@@ -1,18 +1,35 @@
 import React from 'react';
 import { Text, View, TextInput, TouchableOpacity, Image, StyleSheet, StatusBar } from "react-native";
-import { Link } from "expo-router";
 import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { RootStackParamList } from '../navigation/AppNavigator';
+
+type SignUpScreenProp = NativeStackNavigationProp<RootStackParamList, 'Signup'>;
 
 export default function SignUp() {
+  const navigation = useNavigation<SignUpScreenProp>();
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle="dark-content" />
       <View style={styles.formContainer}>
-        <Text style={styles.appName}>UnifiED</Text>
-        <Text style={styles.title}>Create an Account</Text>
+        <Text style={styles.appName}>Welcome onboard!</Text>
+        <Text style={styles.title}>Let’s help you meet up your tasks</Text>
         
         <View style={styles.inputContainer}>
-          <MaterialIcons name="email" size={24} color="#7F8C8D" style={styles.inputIcon} />
+          <MaterialIcons name="person" size={20} color="#7F8C8D" style={styles.inputIcon} />
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your full name"
+            placeholderTextColor="#7F8C8D"
+            keyboardType="default"
+            autoCapitalize="none"
+          />
+        </View>
+
+        <View style={styles.inputContainer}>
+          <MaterialIcons name="email" size={20} color="#7F8C8D" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
             placeholder="Enter your email"
@@ -23,17 +40,17 @@ export default function SignUp() {
         </View>
         
         <View style={styles.inputContainer}>
-          <MaterialIcons name="lock" size={24} color="#7F8C8D" style={styles.inputIcon} />
+          <MaterialIcons name="lock" size={20} color="#7F8C8D" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
-            placeholder="Create password"
+            placeholder="Enter password"
             placeholderTextColor="#7F8C8D"
             secureTextEntry
           />
         </View>
 
         <View style={styles.inputContainer}>
-          <MaterialIcons name="lock" size={24} color="#7F8C8D" style={styles.inputIcon} />
+          <MaterialIcons name="lock" size={20} color="#7F8C8D" style={styles.inputIcon} />
           <TextInput
             style={styles.input}
             placeholder="Confirm password"
@@ -48,23 +65,23 @@ export default function SignUp() {
 
         <View style={styles.orContainer}>
           <View style={styles.orLine} />
-          <Text style={styles.orText}>OR SIGN UP WITH</Text>
+          <Text style={styles.orText}>- OR SIGN UP WITH -</Text>
           <View style={styles.orLine} />
         </View>
 
         <TouchableOpacity style={styles.googleButton}>
           <Image 
-            source={require('../assets/images/pngtree-google-internet-icon-vector-png-image_9183287.png')} 
+            source={require('../../assets/images/pngtree-google-internet-icon-vector-png-image_9183287.png')} 
             style={styles.googleLogo} 
           />
-          <Text style={styles.googleButtonText}>Sign up with Google</Text>
+          <Text style={styles.googleButtonText}>Google</Text>
         </TouchableOpacity>
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>Already have an account? </Text>
-          <Link href="/signin">
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.linkText}>Sign In</Text>
-          </Link>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -74,7 +91,7 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#F1D3FF',
   },
   formContainer: {
     flex: 1,
@@ -83,15 +100,15 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   appName: {
-    fontSize: 36,
-    fontWeight: "bold",
-    color: "#AD00FF",
+    fontSize: 25,
+    fontFamily: 'Inter-Bold',
+    color: "#6A009C",
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: 10,
   },
   title: {
-    fontSize: 20,
-    fontWeight: "bold",
+    fontSize: 15,
+    fontFamily: 'Inter-Regular',
     color: "#2C3E50",
     marginBottom: 20,
     textAlign: "center",
@@ -110,19 +127,21 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     padding: 15,
-    fontSize: 16,
+    fontSize: 14,
     color: "#2C3E50",
+    fontFamily: 'Inter-Regular',
   },
   signUpButton: {
-    backgroundColor: "#AD00FF",
+    backgroundColor: "#A32EDA",
     paddingVertical: 15,
     borderRadius: 10,
+    marginTop: 20,
     marginBottom: 20,
   },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: 'Inter-Bold',
     textAlign: "center",
   },
   orContainer: {
@@ -139,7 +158,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     color: "#7F8C8D",
     fontSize: 14,
-    fontWeight: "600",
+    fontFamily: 'Inter-Regular',
+
+
   },
   googleButton: {
     flexDirection: 'row',
@@ -158,9 +179,9 @@ const styles = StyleSheet.create({
   },
   googleButtonText: {
     marginLeft: 10,
-    color: "#2C3E50",
-    fontSize: 16,
-    fontWeight: "600",
+    color: "#333333",
+    fontSize: 18,
+    fontFamily: 'Inter-Bold',
   },
   footer: {
     flexDirection: "row",
@@ -174,6 +195,6 @@ const styles = StyleSheet.create({
   linkText: {
     color: "#AD00FF",
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: 'Inter-Bold',
   },
 }); 

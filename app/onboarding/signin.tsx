@@ -48,10 +48,14 @@ export default function SignIn() {
           <View style={styles.orLine} />
         </View>
 
-        <TouchableOpacity style={styles.googleButton}>
-        <Image source={require('../assets/images/pngtree-google-internet-icon-vector-png-image_9183287.png')} style={styles.googleLogo} />
-        <Text style={styles.googleButtonText}>Sign in with Google</Text>
-        </TouchableOpacity>
+<TouchableOpacity style={styles.googleButton}>
+  <Image
+    source={{ uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png' }}
+    style={styles.googleLogo}
+  />
+  <Text style={styles.googleButtonText}>Sign in with Google</Text>
+</TouchableOpacity>
+
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>Don't have an account? </Text>
